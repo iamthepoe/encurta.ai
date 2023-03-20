@@ -16,6 +16,15 @@ class UrlRepository {
 			throw new Error(e);
 		}
 	}
+
+	async delete(id) {
+		try {
+			await this.model.findByIdAndDelete(id);
+			return true;
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
 }
 
 module.exports = UrlRepository;
