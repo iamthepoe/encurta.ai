@@ -26,6 +26,15 @@ class UrlRepository {
 		}
 	}
 
+	async find(data) {
+		try {
+			let queryData = await this.model.find(data);
+			return queryData;
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
+
 	async delete(id) {
 		try {
 			await this.model.findByIdAndDelete(id);
