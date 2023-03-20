@@ -4,7 +4,7 @@ class InMemoryUrlRepository {
 	async create(data) {
 		const { originalUrl, userId, hash } = data;
 		try {
-			const url = { id: items.length, originalUrl, userId, hash };
+			const url = { id: this.items.length, originalUrl, userId, hash };
 			this.items.push(url);
 			return url;
 		} catch (e) {
