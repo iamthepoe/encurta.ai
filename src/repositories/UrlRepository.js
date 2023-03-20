@@ -17,6 +17,15 @@ class UrlRepository {
 		}
 	}
 
+	async update(id, data) {
+		try {
+			await this.model.findByIdAndUpdate(id, data);
+			return true;
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
+
 	async delete(id) {
 		try {
 			await this.model.findByIdAndDelete(id);
