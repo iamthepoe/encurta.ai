@@ -1,7 +1,7 @@
 const mongoose = require('../database/connection.js');
 
 const HashSchema = new mongoose.Schema({
-	hash: { type: String, required: true },
+	hash: { type: String, required: true, unique: true },
 	inUse: { type: Boolean, default: false },
 });
 
