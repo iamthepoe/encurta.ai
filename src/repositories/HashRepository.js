@@ -12,9 +12,18 @@ class HashRepository {
 		}
 	}
 
-	async find(hash) {
+	async find(data) {
 		try {
-			let queryData = await this.model.find({ hash });
+			let queryData = await this.model.find(data);
+			return queryData;
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
+
+	async findOne(data) {
+		try {
+			let queryData = await this.model.findOne(data);
 			return queryData;
 		} catch (e) {
 			throw new Error(e);
