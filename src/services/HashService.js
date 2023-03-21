@@ -14,3 +14,5 @@ class HashService {
 		}
 	}
 }
+
+module.exports = HashService;
