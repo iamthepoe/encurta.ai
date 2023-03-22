@@ -12,9 +12,13 @@ class UrlService {
 
 		try {
 			const hashResponse = await this.hashService.findFreeHash();
-			const { hash } = hashResponse.body;
-			await this.repository.create({ originalUrl, userId, hash });
-			return this.response(201, 'Created.');
+			const { hash } = hashResponse.body.data;
+			const shortedUrl = await this.repository.create({
+				originalUrl,
+				userId,
+				hash,
+			});
+			return this.response(201, 'Created.', false, shortedUrl);
 		} catch (e) {
 			return this.response(400, e, true);
 		}
