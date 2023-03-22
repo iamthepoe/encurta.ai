@@ -1,21 +1,28 @@
 class InMemoryUrlRepository {
-	items = [];
+	itens = [
+		{
+			id: 0,
+			originalUrl: 'www.brave.com',
+			userId: 'johndoe',
+			hash: 'XzS/np4',
+		},
+	];
 
-	async create(data) {
+	create(data) {
 		const { originalUrl, userId, hash } = data;
 		try {
-			const url = { id: this.items.length, originalUrl, userId, hash };
-			this.items.push(url);
+			const url = { id: this.itens.length, originalUrl, userId, hash };
+			this.itens.push(url);
 			return url;
 		} catch (e) {
 			throw new Error(e);
 		}
 	}
 
-	async update(id, data) {
+	update(id, data) {
 		try {
-			const index = this.items.findIndex((item) => item.id === id);
-			if (index !== -1) this.items[index] = data;
+			const index = this.itens.findIndex((item) => item.id === id);
+			if (index !== -1) this.itens[index] = data;
 			if (index === -1) throw new Error(`this url doesn't exist!`);
 			return true;
 		} catch (e) {
@@ -25,9 +32,8 @@ class InMemoryUrlRepository {
 
 	find(data) {
 		try {
-			const item = this.items.find((item) => item === data);
-			if (!item) throw new Error(`this url doesn't exist!`);
-			return item;
+			const item = this.itens.find((item) => item.hash === data.hash);
+			return { originalUrl: item.originalUrl };
 		} catch (e) {
 			throw new Error(e);
 		}
@@ -35,8 +41,8 @@ class InMemoryUrlRepository {
 
 	delete(id) {
 		try {
-			const index = this.items.findIndex((item) => item.id === id);
-			if (index !== -1) this.items.splice(index, 1);
+			const index = this.itens.findIndex((item) => item.id === id);
+			if (index !== -1) this.itens.splice(index, 1);
 			if (index === -1) throw new Error(`this url doesn't exist!`);
 			return true;
 		} catch (e) {

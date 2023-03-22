@@ -20,3 +20,11 @@ test('create a new short url', async () => {
 	assert.strictEqual(error, false);
 	assert.ok(body.data);
 });
+
+test('find original link by the short url', async () => {
+	const response = await urlService.findUrl('XzS/np4');
+	const { status, body, error } = response;
+	assert.strictEqual(status, 200);
+	assert.strictEqual(error, false);
+	assert.ok(body.data.originalUrl);
+});

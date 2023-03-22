@@ -23,6 +23,20 @@ class UrlService {
 			return this.response(400, e, true);
 		}
 	}
+
+	async findUrl(hash) {
+		if (!hash.trim())
+			return this.response(400, 'You have empty fields.', true);
+
+		try {
+			const queryData = await this.repository.find({ hash });
+			const { originalUrl } = queryData;
+
+			return this.response(200, 'Finded.', false, { originalUrl });
+		} catch (e) {
+			return this.response(500, e, true);
+		}
+	}
 }
 
 module.exports = UrlService;
