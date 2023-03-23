@@ -30,8 +30,10 @@ class UrlService {
 
 		try {
 			const queryData = await this.repository.find({ hash });
-			const { originalUrl } = queryData;
+			if (queryData?.originalUrl == undefined)
+				return this.response(404, 'Not found.', true);
 
+			const { originalUrl } = queryData;
 			return this.response(200, 'Finded.', false, { originalUrl });
 		} catch (e) {
 			return this.response(500, e, true);

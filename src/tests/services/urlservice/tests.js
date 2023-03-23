@@ -47,3 +47,11 @@ it('should prevent to find a original link with request empty values', async () 
 	assert.strictEqual(error, true);
 	assert.ok(!body.data?.originalUrl);
 });
+
+it('should prevent to find a original link with a inexistent hash', async () => {
+	const response = await urlService.findUrl('XzS/npop4');
+	const { status, body, error } = response;
+	assert.strictEqual(status, 404);
+	assert.strictEqual(error, true);
+	assert.ok(!body.data?.originalUrl);
+});

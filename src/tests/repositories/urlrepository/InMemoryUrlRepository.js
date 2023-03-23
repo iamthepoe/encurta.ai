@@ -33,7 +33,7 @@ class InMemoryUrlRepository {
 	find(data) {
 		try {
 			const item = this.itens.find((item) => item.hash === data.hash);
-			return { originalUrl: item.originalUrl };
+			return { originalUrl: item?.originalUrl };
 		} catch (e) {
 			throw new Error(e);
 		}
