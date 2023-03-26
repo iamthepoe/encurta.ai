@@ -8,4 +8,4 @@ const UrlSchema = new mongoose.Schema({
 
 UrlSchema.set('timestamps', true);
 
-module.exports = mongoose.model('url', UrlSchema);
+module.exports = mongoose.model('urls', UrlSchema);

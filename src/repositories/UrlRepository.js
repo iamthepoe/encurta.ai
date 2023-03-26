@@ -35,6 +35,15 @@ class UrlRepository {
 		}
 	}
 
+	async findOne(data) {
+		try {
+			let queryData = await this.model.findOne(data);
+			return queryData;
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
+
 	async delete(id) {
 		try {
 			await this.model.findByIdAndDelete(id);

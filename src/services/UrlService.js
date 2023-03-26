@@ -33,7 +33,7 @@ class UrlService {
 			return this.response(400, 'You have empty fields.', true);
 
 		try {
-			const queryData = await this.repository.find({ hash });
+			const queryData = await this.repository.findOne({ hash });
 			if (queryData?.originalUrl == undefined)
 				return this.response(404, 'Not found.', true);
 
