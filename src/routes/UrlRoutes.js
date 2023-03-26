@@ -10,4 +10,10 @@ router.get('/:hash', async (req, res) => {
 	return res.status(status).json({ body, error, message });
 });
 
+router.post('/url', async (req, res) => {
+	const { originalUrl } = req.body;
+	const result = await urlService.create({ originalUrl, userId: 'posopda' });
+	const { status, body, error, message } = result;
+	return res.status(status).json({ body, error, message });
+});
 module.exports = router;

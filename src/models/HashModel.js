@@ -7,4 +7,4 @@ const HashSchema = new mongoose.Schema({
 
 HashSchema.set('timestamps', true);
 
-module.exports = mongoose.model('hash', HashSchema);
+module.exports = mongoose.model('hashs', HashSchema);

@@ -6,6 +6,7 @@ app.get('/', async (req, res) => {
 	res.send('Hello, World!');
 });
 
+app.use(express.json());
 app.use('/', UrlRoutes);
 
 module.exports = app;

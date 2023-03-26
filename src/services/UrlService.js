@@ -13,14 +13,18 @@ class UrlService {
 		try {
 			const hashResponse = await this.hashService.findFreeHash();
 			const { hash } = hashResponse.body.data;
-			const shortedUrl = await this.repository.create({
+			await this.repository.create({
 				originalUrl,
 				userId,
 				hash,
 			});
-			return this.response(201, 'Created.', false, shortedUrl);
+
+			return this.response(201, 'Created.', false, {
+				originalUrl,
+				hash,
+			});
 		} catch (e) {
-			return this.response(400, e, true);
+			return this.response(400, `${e}`, true);
 		}
 	}
 
@@ -36,7 +40,7 @@ class UrlService {
 			const { originalUrl } = queryData;
 			return this.response(200, 'Finded.', false, { originalUrl });
 		} catch (e) {
-			return this.response(500, e, true);
+			return this.response(500, `${e}`, true);
 		}
 	}
 }
