@@ -14,7 +14,7 @@ class HashRepository {
 
 	async find(data) {
 		try {
-			let queryData = await this.model.find(data);
+			const queryData = await this.model.find(data);
 			return queryData;
 		} catch (e) {
 			throw new Error(e);
@@ -23,7 +23,7 @@ class HashRepository {
 
 	async findOne(data) {
 		try {
-			let queryData = await this.model.findOne(data);
+			const queryData = await this.model.findOne(data);
 			return queryData;
 		} catch (e) {
 			throw new Error(e);

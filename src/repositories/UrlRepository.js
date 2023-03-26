@@ -6,7 +6,7 @@ class UrlRepository {
 	async create(data) {
 		const { originalUrl, userId, hash } = data;
 		try {
-			let queryData = await this.model.create({
+			const queryData = await this.model.create({
 				originalUrl,
 				userId,
 				hash,
@@ -28,7 +28,7 @@ class UrlRepository {
 
 	async find(data) {
 		try {
-			let queryData = await this.model.find(data);
+			const queryData = await this.model.find(data);
 			return queryData;
 		} catch (e) {
 			throw new Error(e);
@@ -37,7 +37,7 @@ class UrlRepository {
 
 	async findOne(data) {
 		try {
-			let queryData = await this.model.findOne(data);
+			const queryData = await this.model.findOne(data);
 			return queryData;
 		} catch (e) {
 			throw new Error(e);
