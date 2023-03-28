@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 class UserService {
-	constructor(response, repository, bcrypt, jwt, secret) {
+	constructor(response, repository, bcrypt, jwt) {
 		this.repository = repository;
 		this.response = response;
 		this.bcrypt = bcrypt;
