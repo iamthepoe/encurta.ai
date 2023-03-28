@@ -23,7 +23,7 @@ class UserService {
 
 		try {
 			const salt = await this.bcrypt.genSalt(10);
-			const hashedPassword = await this.hash(password, salt);
+			const hashedPassword = await this.bcrypt.hash(password, salt);
 
 			const user = await this.repository.create({
 				name,
