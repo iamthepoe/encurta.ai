@@ -36,7 +36,7 @@ class UserService {
 	async create(data) {
 		const { name, email, password } = data;
 
-		if (!name.trim() || !email.trim() || !password.trim())
+		if (!name?.trim() || !email?.trim() || !password?.trim())
 			return this.response(400, `You can't send empty values.`, true);
 
 		try {
@@ -65,7 +65,7 @@ class UserService {
 	async login(data) {
 		const { email, password } = data;
 
-		if (!email.trim() || !password.trim())
+		if (!email?.trim() || !password?.trim())
 			return this.response(400, `You can't send empty values.`, true);
 
 		try {

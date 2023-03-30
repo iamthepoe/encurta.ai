@@ -7,7 +7,7 @@ class UrlService {
 
 	async create(data) {
 		const { originalUrl, userId } = data;
-		if (!originalUrl.trim() || !userId.trim())
+		if (!originalUrl?.trim() || !userId?.trim())
 			return this.response(400, 'You have empty fields!', true);
 
 		try {
@@ -29,7 +29,7 @@ class UrlService {
 	}
 
 	async findUrl(hash) {
-		if (!hash.trim())
+		if (!hash?.trim())
 			return this.response(400, 'You have empty fields.', true);
 
 		try {
