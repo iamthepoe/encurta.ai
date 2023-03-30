@@ -10,4 +10,11 @@ router.post('/users', async (req, res) => {
 	return res.status(status).json({ body, error, message });
 });
 
+router.post('/users/auth', async (req, res) => {
+	const { email, password } = req.body;
+	const result = await userService.login({ email, password });
+	const { status, body, error, message } = result;
+	return res.status(status).json({ body, error, message });
+});
+
 module.exports = router;
