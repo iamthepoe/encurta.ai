@@ -39,6 +39,15 @@ class InMemoryUrlRepository {
 		}
 	}
 
+	findOne(data) {
+		try {
+			const item = this.itens.find((item) => item.hash === data.hash);
+			return { originalUrl: item?.originalUrl };
+		} catch (e) {
+			throw new Error(e);
+		}
+	}
+
 	delete(id) {
 		try {
 			const index = this.itens.findIndex((item) => item.id === id);

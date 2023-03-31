@@ -15,6 +15,7 @@ it('should create a new short url', async () => {
 		originalUrl: 'www.google.com',
 		userId: 'fe6eebb7-36f4-487e-aae4-415c35e4d4e',
 	});
+
 	const { status, body, error } = response;
 	assert.strictEqual(status, 201);
 	assert.strictEqual(error, false);

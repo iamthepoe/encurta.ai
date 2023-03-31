@@ -1,15 +1,85 @@
 class InMemoryHashRepository {
 	itens = [
-		{ id: 1, hash: 'TzM8PJg', inUse: false },
-		{ id: 2, hash: 'brMhXrM', inUse: false },
-		{ id: 3, hash: '7+DcUG8', inUse: false },
-		{ id: 4, hash: 'V7yQkhy', inUse: false },
-		{ id: 5, hash: 'sAzKbHk', inUse: true },
-		{ id: 6, hash: 'zLGQI2Q', inUse: false },
-		{ id: 7, hash: 'XzS/np4', inUse: true },
-		{ id: 8, hash: 'C4k/4yI', inUse: false },
-		{ id: 9, hash: '4p4cMWH', inUse: false },
-		{ id: 10, hash: 'znuWtFq', inUse: false },
+		{
+			id: 1,
+			hash: 'TzM8PJg',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 2,
+			hash: 'brMhXrM',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 3,
+			hash: '7+DcUG8',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 4,
+			hash: 'V7yQkhy',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 5,
+			hash: 'sAzKbHk',
+			inUse: true,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 6,
+			hash: 'zLGQI2Q',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 7,
+			hash: 'XzS/np4',
+			inUse: true,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 8,
+			hash: 'C4k/4yI',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 9,
+			hash: '4p4cMWH',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
+		{
+			id: 10,
+			hash: 'znuWtFq',
+			inUse: false,
+			save: () => {
+				return 'Saved hash.';
+			},
+		},
 	];
 
 	update(hash, data) {
@@ -36,7 +106,7 @@ class InMemoryHashRepository {
 	findOne(data) {
 		const { inUse } = data;
 		const queryData = this.itens.find((item) => item.inUse === inUse);
-		return queryData.hash;
+		return queryData;
 	}
 }
 
