@@ -12,7 +12,6 @@ class UrlService {
 
 		try {
 			const hashResponse = await this.hashService.findFreeHash();
-			console.log(hashResponse.message);
 			const { hash } = hashResponse.body.data;
 			await this.repository.create({
 				originalUrl,
