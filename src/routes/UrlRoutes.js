@@ -11,7 +11,13 @@ router.get('/:hash', async (req, res) => {
 	return res.status(status).json({ body, error, message });
 });
 
-router.post('/url', authUser, async (req, res) => {
+router.get('/urls/user', authUser, async (req, res) => {
+	const result = await urlService.findUrlsByUser(req.decodedToken.userId);
+	const { status, body, error, message } = result;
+	return res.status(status).json({ body, error, message });
+});
+
+router.post('/urls', authUser, async (req, res) => {
 	const { originalUrl } = req.body;
 
 	const result = await urlService.create({
@@ -22,4 +28,5 @@ router.post('/url', authUser, async (req, res) => {
 	const { status, body, error, message } = result;
 	return res.status(status).json({ body, error, message });
 });
+
 module.exports = router;

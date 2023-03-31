@@ -44,6 +44,26 @@ class UrlService {
 			return this.response(500, `${e}`, true);
 		}
 	}
+
+	async findUrlsByUser(userId) {
+		if (!userId?.trim())
+			return this.response(400, 'You have empty fields.', true);
+
+		try {
+			const queryData = await this.repository.find({ userId });
+
+			if (!queryData) return this.response(404, 'Not found.', true);
+
+			const userUrls = queryData.map(({ originalUrl, hash }) => ({
+				originalUrl,
+				hash,
+			}));
+
+			return this.response(200, 'Finded.', false, { userUrls });
+		} catch (e) {
+			return this.response(500, `${e}`, true);
+		}
+	}
 }
 
 module.exports = UrlService;
