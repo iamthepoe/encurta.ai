@@ -31,9 +31,13 @@ class InMemoryUrlRepository {
 	}
 
 	find(data) {
+		let property = data['hash'] || data['userId'];
+
 		try {
-			const item = this.itens.find((item) => item.hash === data.hash);
-			return { originalUrl: item?.originalUrl };
+			const rawData = this.itens.filter(
+				(item) => item[property] === data[property]
+			);
+			return rawData;
 		} catch (e) {
 			throw new Error(e);
 		}

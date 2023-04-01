@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "node --test src/tests/services/urlservice/tests.js"
   },
   "author": "",
   "license": "ISC",
