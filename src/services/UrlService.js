@@ -51,7 +51,8 @@ class UrlService {
 		try {
 			const queryData = await this.repository.find({ userId });
 
-			if (!queryData) return this.response(404, 'Not found.', true);
+			if (queryData.length === 0)
+				return this.response(404, 'Not found.', true);
 
 			const userUrls = queryData.map(({ originalUrl, hash }) => ({
 				originalUrl,

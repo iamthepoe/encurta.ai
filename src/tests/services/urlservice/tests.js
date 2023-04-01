@@ -22,6 +22,54 @@ it('should create a new short url', async () => {
 	assert.ok(body.data);
 });
 
+it('should find original link by the short url', async () => {
+	const response = await urlService.findUrl('XzS/np4');
+	const { status, body, error } = response;
+	assert.strictEqual(status, 200);
+	assert.strictEqual(error, false);
+	assert.ok(body.data.originalUrl);
+});
+
+it('should return all short urls created by a user', async () => {
+	const response = await urlService.findUrlsByUser(
+		'fe6eebb7-36f4-487e-aae4-415c35e4d4e'
+	);
+
+	const { status, body, error } = response;
+
+	assert.strictEqual(status, 200);
+	assert.strictEqual(error, false);
+	assert.ok(body.data.userUrls);
+});
+
+it('should prevent to find a original link with a inexistent hash', async () => {
+	const response = await urlService.findUrl('XzS/npop4');
+	const { status, body, error } = response;
+	assert.strictEqual(status, 404);
+	assert.strictEqual(error, true);
+	assert.ok(!body.data?.originalUrl);
+});
+
+it('should prevent to request user urls with a inexistent id', async () => {
+	const response = await urlService.findUrlsByUser('spapoanopa');
+
+	const { status, body, error } = response;
+
+	assert.strictEqual(status, 404);
+	assert.strictEqual(error, true);
+	assert.ok(!body?.data?.userUrls);
+});
+
+it('should prevent to request user urls with a empty id', async () => {
+	const response = await urlService.findUrlsByUser('   ');
+
+	const { status, body, error } = response;
+
+	assert.strictEqual(status, 400);
+	assert.strictEqual(error, true);
+	assert.ok(!body?.data?.userUrls);
+});
+
 it('should prevent to create a new short url with empty values', async () => {
 	const response = await urlService.create({
 		originalUrl: '    ',
@@ -33,40 +81,10 @@ it('should prevent to create a new short url with empty values', async () => {
 	assert.ok(!body.data);
 });
 
-it('should return all short urls created by a user', async () => {
-	const response = await urlService.findUrlsByUser(
-		'fe6eebb7-36f4-487e-aae4-415c35e4d4e'
-	);
-
-	console.log(response.message);
-
-	const { status, body, error } = response;
-
-	assert.strictEqual(status, 200);
-	assert.strictEqual(error, false);
-	assert.ok(body.data.userUrls);
-});
-
-it('should find original link by the short url', async () => {
-	const response = await urlService.findUrl('XzS/np4');
-	const { status, body, error } = response;
-	assert.strictEqual(status, 200);
-	assert.strictEqual(error, false);
-	assert.ok(body.data.originalUrl);
-});
-
 it('should prevent to find a original link with request empty values', async () => {
 	const response = await urlService.findUrl('   ');
 	const { status, body, error } = response;
 	assert.strictEqual(status, 400);
-	assert.strictEqual(error, true);
-	assert.ok(!body.data?.originalUrl);
-});
-
-it('should prevent to find a original link with a inexistent hash', async () => {
-	const response = await urlService.findUrl('XzS/npop4');
-	const { status, body, error } = response;
-	assert.strictEqual(status, 404);
 	assert.strictEqual(error, true);
 	assert.ok(!body.data?.originalUrl);
 });

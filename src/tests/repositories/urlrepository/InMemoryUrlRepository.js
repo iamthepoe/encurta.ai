@@ -6,6 +6,12 @@ class InMemoryUrlRepository {
 			userId: 'johndoe',
 			hash: 'XzS/np4',
 		},
+		{
+			id: 1,
+			originalUrl: 'www.brave.com',
+			userId: 'abcde',
+			hash: 'XzSsam',
+		},
 	];
 
 	create(data) {
@@ -31,7 +37,9 @@ class InMemoryUrlRepository {
 	}
 
 	find(data) {
-		let property = data['hash'] || data['userId'];
+		let property;
+		if (data['hash']) property = 'hash';
+		if (data['userId']) property = 'userId';
 
 		try {
 			const rawData = this.itens.filter(
